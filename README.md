@@ -4,7 +4,7 @@ This assessment involves reviewing a CORI publication, analyzing the data and gr
 
 ## The Task
 
-For this exercise, review our recent publication on **[Rural America's Struggle to Access Private Capital](https://ruralinnovation.us/resources/reports/rural-americas-struggle-to-access-private-capital/)**. In the material provided, you have access to two high-impact graphics and their corresponding data that were utilized to support the article. Use the data provided to generate R-based graphics that work to enrich the article.
+For this exercise, review our recent publication on **[Rural America's Struggle to Access Private Capital](https://ruralinnovation.us/resources/reports/rural-americas-struggle-to-access-private-capital/)**. In the material provided, you have access to two high-impact graphics and their corresponding data that were utilized to support the article. Use the data provided to generate R-based graphics that work to enrich the images provided.
 
 ## Steps
 
