@@ -4,15 +4,11 @@ Over the past 50 years, employment levels in both rural and nonrural areas incre
 
 Figure 2: The growing employment divide shows how rural communities are increasingly left behind
 
-![docs/rural_nonrural_employment.png](docs/rural_nonrural_employment.png)
-
 ![export/fig2_makeover.png](export/fig2_makeover.png)
 
 A big driver of the growing employment divide is attributed to the difference in employment levels in the tradable services sector (see Figure 7). This sector includes businesses like SaaS, consulting, IT services, and digital marketing. In 2022, nonrural employment levels in tradable services were nearly double that of rural areas, 30% and 17%, respectively. While rural areas have a higher proportion of employment levels in the tradable goods (e.g., agriculture, manufacturing) than nonrural areas, this sector has been acutely affected by globalization and automation.
 
 Figure 7: Nonrural areas have nearly double the employment levels in tradable services as rural areas
-
-![docs/rural_nonrural_sectoral_employment.png](docs/rural_nonrural_sectoral_employment.png)
 
 ![export/fig7_makeover.png](export/fig7_makeover.png)
 
