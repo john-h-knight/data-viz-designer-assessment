@@ -25,9 +25,6 @@ sector <- read_csv(
 
 # rural vs nonrural employment --------------------------------------------
 
-# per cori.charts documentation, update the geom defaults prior to plotting
-update_cori_geom_defaults()
-
 # transform data for geom_ribbon
 ribbon <- employment %>%
   select(year, is_rural, indexed_value) %>%
@@ -35,6 +32,9 @@ ribbon <- employment %>%
               values_from = indexed_value) %>%
   mutate(
     year = as.Date(paste0(year, "-01-01")))
+
+# per cori.charts documentation, update the geom defaults prior to plotting
+update_cori_geom_defaults()
 
 # build the graphic
 fig2_makeover <- employment %>%
@@ -54,7 +54,7 @@ fig2_makeover <- employment %>%
     color = "black") +
   # add ribbon to fill in area between lines
   geom_ribbon(
-    data = ribbon3,
+    data = ribbon,
     # ribbon should not inherit the global aesthetics
     inherit.aes = FALSE,
     # define aesthetics for this layer
@@ -130,8 +130,7 @@ fig2_makeover
 # export graphic
 save_plot(
   fig2_makeover,
-  here("export/fig2_makeover.png")
-)
+  here("export/fig2_makeover.png"))
 
 # # transform data for geom_ribbon
 # ribbon <- employment %>%
@@ -345,3 +344,77 @@ save_plot(
 
 # rural vs nonrural sector ------------------------------------------------
 
+# remove duplicates
+sector_distinct <- sector %>%
+  distinct(sector, is_rural, year, share_sector)
+
+# build the graphic
+fig7_makeover <- sector_distinct %>%
+  # filter for the most recent year
+  filter(year == 2022) %>%
+  ggplot(
+    aes(x = share_sector,
+        y = sector)) +
+  geom_line(
+    linewidth = 2,
+    color = "black") +
+  geom_point(
+    aes(color = is_rural),
+    size = 5,
+    alpha = 0.5) +
+  # use rural vs nonrural palette
+  scale_color_cori(palette = "ctg2ruralnonrural",
+                   reverse = TRUE) +
+  # use dates for x-axis 
+  scale_x_continuous(
+    labels = label_percent(accuracy = 1),
+    breaks = c(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+    expand = expansion(mult = c(0.05, 0.05))) +
+  theme_cori() +
+  theme(
+    # remove the legend
+    legend.position = "none",
+    # add ticks to the x-axis
+    axis.ticks.x = element_line(color = "black", linewidth = 0.5),
+    axis.ticks.length = unit(8, 'pt'),
+    # add margin to separate tick and text
+    axis.text.x = element_text(margin = margin(t = 0)),
+    # use dark gray for caption text
+    plot.caption = element_text(color = "darkgray")) +
+  labs(
+    title = "Tradable services represent a larger share of employment in\nnonrural areas than rural areas",
+    subtitle = "Share of employment in 2022 by sector",
+    x = NULL,
+    y = NULL,
+    caption = paste0(
+      "Source: Bureau of Economic Analysis\n",
+      "Note: “Rural” refers to the nonmetro definition which includes all ",
+      "nonmetro counties."))
+
+
+  # add direct label for nonrural line
+  annotate(
+    "text",
+    x = as.Date("2006-01-01"),
+    y = 2.15,
+    label = "Nonrural",
+    fontface = "bold",
+    color = "#211448",
+    size = 6) +
+  # add direct label for rural line
+  annotate(
+    "text",
+    x = as.Date("2010-06-01"),
+    y = 1.42,
+    label = "Rural",
+    fontface = "bold",
+    color = "#00825B",
+    size = 6)
+
+# view
+fig7_makeover
+
+# export graphic
+save_plot(
+  fig7_makeover,
+  here("export/fig7_makeover.png"))
